@@ -1,0 +1,148 @@
+body {
+  padding: 50px;
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.roundedbox {
+  position: relative;
+  padding: 5px;
+  background-color: #f8f8f8;
+}
+
+.card {
+  box-shadow: -2px -2px 3px grey inset;
+  border-radius: 6px;
+}
+
+.playerstate {
+  width: 98px;
+  height: 150px;
+}
+
+.selectable {
+  border-style: dotted;
+  border-color: blue;
+  border-width: 3px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.card_normalsize {
+  width: 152px;
+  height: 98px;
+}
+
+.marketspace {
+  width: 123px;
+  height: 152px;
+  display: flex;
+}
+
+
+.whiteblock {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.section_title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.action-button {
+  display: inline-block;
+}
+
+.bgabutton_blue {
+  border: 1px solid #37578c;
+  background: -webkit-linear-gradient(top, #4065a3, #4871b6);
+}
+
+.bgabutton {
+  padding: 6px 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  box-shadow: rgba(0,0,0,1) 0 1px 0;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-radius: 6px;
+}
+/*以降は個別のスタイル*/
+#head_infomsg {
+  position: fixed;
+  z-index: 10000;
+  top: 5px;
+  left: 20px;
+  right: 20px;
+  display: none;
+}
+
+.head_error {
+  background-color: red;
+}
+
+.head_infomsg_item {
+  padding: 3px;
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.market_area {
+  margin-left: 4px;
+  position: relative;
+}
+
+
+#page-title {
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 110%;
+  font-weight: bold;
+  line-height: 32px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+}
+
+#left-side-wrapper {
+  margin-right: 245px;
+  margin-left: 2px;
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.card_inmarket {
+  float: left;
+}
+
+.radiobutton {
+  display: none;
+}
+label {
+  background-color: skyblue;
+  padding: 10px 20px;
+}
+.radiobutton:checked + label{
+  background-color: orange;
+}
+

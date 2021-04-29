@@ -1,0 +1,35 @@
+#overall-header(style='display:none')
+#page-title.roundedbox
+  #maintitlebar_content(style= 'display: inline-block; position: relative;')
+    span#pagemaintitletext
+    a#top_Information.action-button.bgabutton.bgabutton_blue()   
+    span#pagemaintitletext
+    a#btn_keep_order.action-button.bgabutton.bgabutton_blue(href='#' onclick='return false;') 確定  
+#page-content.game-content
+  #head_infomsg.head_infomsg(style='display: none;')
+    .head_error
+      #head_infomsg_item_1.head_infomsg_item 
+  #pagesection_gameview(style='overflow: visible; display: block;')
+    #player_state_list(style='margin-top: 4px; position: relative; height: 50px; display: flex;margin: 10px')
+    #game_play_area_wrap
+      #game_play_area(style='min-width: 0px;')
+          #description_card_area.whiteblock.section_title お題  
+            #description_card.card(style='margin: 6px; width: 500px; height: 100px; border-color: black; margin-left:auto; margin-right:auto;')
+          #answer_area.whiteblock.market_area.section_title(style='min-height: 150px;') お題への回答  
+            #answers_in_upperrow(style='margin-top: 4px; display: flex; flex-wrap: wrap;')
+              - for(let i = 0; i < 10; i++)
+                input.radiobutton(id ='answer_card' + i type="radio" name="answer_cards")
+                label.card_inmarket.card_normalsize.card.answer_cards(for='answer_card' + i style='display: none;')
+          #market.whiteblock.market_area.section_title 手札    
+            #hand_cards(style='margin-top: 4px; display: flex; flex-wrap: wrap;')
+              - for(let i = 0; i < 5; i++)
+                input.radiobutton(id ='my_thing_card' + i type="radio" name="hand_cards")
+                label.card_inmarket.card_normalsize.card(for='my_thing_card' + i)
+#utilities.roundedbox
+  #utilities_content(style= 'display: inline-block; position: relative;')
+    span#pagemaintitletext
+    a#reset-button.action-button.bgabutton.bgabutton_blue(href='#' onclick='return false;') ゲームをリセット  
+    span#pagemaintitletext
+    a#giveup-button.action-button.bgabutton.bgabutton_blue(href='#' onclick='return false;') このラウンドで抜ける  
+
+                                  
