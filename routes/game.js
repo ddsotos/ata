@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if (req.user) {
      displayName = escape(req.user.displayName);
   }
-  res.render('game', { title: '潜水艦ゲーム', displayName: displayName, thumbUrl: thumbUrl, ipAddress: config.ipAddress });
+  res.render('game', { title: 'ata', displayName: displayName, thumbUrl: thumbUrl, ipAddress: config.ipAddress });
 });
 
 module.exports = router;
