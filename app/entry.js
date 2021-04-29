@@ -17,13 +17,13 @@ const UpdatePlayerState = function(jsonPlayerState){
   let playerState = JSON.parse(jsonPlayerState);
   $("#player_state_list").empty();
   playerState.forEach(player => {
-    let text = "<div>" + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
+    let text = '<div class="playerState">' + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
     $("#player_state_list").append($(text, {
-      "min-width" : 30,
-      "class" : "playerstate",
-      id : player.playerName,
+      id : player.playerName
     }))
   });
+
+
   $("#reset-button").off();
   $("#reset-button").click(() => {
     console.log('reset');
@@ -52,6 +52,7 @@ const StateChange_SelectingAsADealer = function(){
 const StateChange_AnswerCardSelected = function(thingCard){
   if(myState == gameState.Scoring)return;
   myState = gameState.Scoring;
+  HighlightSelectedCard(thingCard);
   $("#top_Information").text("選ばれたのは" + thingCard +"でした。出したのは…");
   $("#btn_keep_order").hide();
   $("#btn_keep_order").off('click');
@@ -120,6 +121,16 @@ const ClearHand = function(){
   }
 };
 
+const HighlightSelectedCard = function(thingCard){
+  $(".answer_cards").each(function(index, element){
+    console.log($(element).text())
+    if($(element).text() == thingCard){
+      console.log("同じ奴あるけど")
+      $(element).addClass("selectable");
+    };});
+}
+
+
 const HaveAlreadySelected = function(playerState, socketID){
   let myPlayerState = MyPlayerState(playerState, socketID);
   return (myPlayerState == "選択済み" || myPlayerState == "親");
@@ -136,12 +147,6 @@ const ClearAnswerArea = function(){
     $(element).hide();});
   $('[name="answer_cards"]:checked').prop("checked",false);
 }
-
-
-const gameObj = {
-  myDisplayName: $('#main').attr('data-displayName'),
-  myThumbUrl: $('#main').attr('data-thumbUrl')
-};
 
 let userName;
 while(!userName || userName.length > 20){

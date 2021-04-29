@@ -5,9 +5,6 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script#main(src="/javascripts/index/bundle.js", data-displayName=`${displayName}`, data-ipAddress=`${ipAddress}`)
   body
-    #overall-content
-      #left-side-wrapper
-        include includes/left_side_view
-      #right-side-wrapper
-        //include includes/right-side-view
+    #left-side-wrapper(style= 'max-width: 750px;')
+      include includes/left_side_view
   #footer

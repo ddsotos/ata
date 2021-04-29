@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
-  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 20px;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -31,9 +31,29 @@ a {
   cursor: pointer;
 }
 
-.card_normalsize {
-  width: 152px;
+.playerState {
+  min-width : 30px;
+  margin-left: 10px;
+}
+
+.card_area {
+  padding: 0px 0px 0px 0px;
+  width: 140px;
   height: 98px;
+  float: left;
+}
+
+.small_padding {
+  padding: 5px 5px;
+  height: 88px;
+}
+
+.card_normalsize {
+  padding: 3px 3px;
+  display:block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .marketspace {
@@ -64,6 +84,7 @@ a {
 }
 
 .bgabutton {
+  min-width: 110px;
   padding: 6px 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -81,8 +102,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 10px 20px 20px;
   display: inline-block;
   border-radius: 6px;
 }
@@ -131,16 +151,11 @@ a {
   margin-top: 5px;
 }
 
-.card_inmarket {
-  float: left;
-}
-
 .radiobutton {
   display: none;
 }
 label {
   background-color: skyblue;
-  padding: 10px 20px;
 }
 .radiobutton:checked + label{
   background-color: orange;

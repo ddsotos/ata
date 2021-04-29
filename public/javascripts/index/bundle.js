@@ -6066,7 +6066,7 @@ var userName = void 0;
 while (!userName || userName.length > 20) {
   userName = prompt("ユーザー名を入力してください", "");
 }
-var socketQueryParameters = 'displayName=' + userName + '&thumbUrl=' + gameObj.myThumbUrl;
+var socketQueryParameters = 'displayName=' + userName;
 var socket = (0, _socket2.default)((0, _jquery2.default)('#main').attr('data-ipAddress') + '?' + socketQueryParameters);
 console.log('entry.jsに入った');
 
