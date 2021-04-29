@@ -4,12 +4,11 @@ var config = require('../config');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let displayName = 'anonymous';
-  let thumbUrl = 'anonymous';
-  console.log(req);
   if (req.user) {
      displayName = escape(req.user.displayName);
+     console.log("displayNameは" + displayName);
   }
-  res.render('game', { title: 'ata', displayName: displayName, thumbUrl: thumbUrl, ipAddress: config.ipAddress });
+  res.render('game', { title: 'ata', displayName: displayName, ipAddress: config.ipAddress });
 });
 
 module.exports = router;

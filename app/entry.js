@@ -147,7 +147,7 @@ let userName;
 while(!userName || userName.length > 20){
   userName = prompt("ユーザー名を入力してください", "");
 }
-const socketQueryParameters = `displayName=${userName}&thumbUrl=${gameObj.myThumbUrl}`;
+const socketQueryParameters = `displayName=${userName}`;
 const socket = io($('#main').attr('data-ipAddress') + '?' + socketQueryParameters);
 console.log('entry.jsに入った');
 
