@@ -82,8 +82,14 @@ function disconnect(socketID) {
   }
   console.log("disconnectを検知")
 }
-function getGameData() {
+
+function Exclude(socketID) {
+  gameObj.players = gameObj.players.filter(player => 
+    player.socketID != socketID
+  );
+  console.log("disconnectを検知")
 }
+
 
 function InitInternalGame() {
   gameObj.internalGame.init(gameObj.players);
@@ -217,15 +223,16 @@ function OnGiveUp(socketID){
   FindPlayerByID(socketID).GiveUp();
 }
 
-function ExcludeDisconnected(){
-  gameObj.players = gameObj.players.filter(player => player.disconnected == false);
+function HasGameStarted(){
+  return gameObj.internalGame.internalGamePlayers.length != 0;
 }
+
+
 
   //init(); // 初期化（初期化はサーバー起動時に行う
 
   module.exports = {
     OnNewConnection,
-    getGameData,
     disconnect,
     onPlayerPrepaired,
     InitInternalGame,
@@ -247,5 +254,6 @@ function ExcludeDisconnected(){
     TryToReplaceDisconnectedPlayer,
     OnGiveUp,
     NeedReset,
-    ExcludeDisconnected
+    Exclude,
+    HasGameStarted
   };

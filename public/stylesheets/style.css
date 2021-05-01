@@ -24,6 +24,7 @@ a {
   border-width: 3px;
   box-sizing: content-box;
   cursor: pointer;
+  background-color: orange;
 }
 
 .playerState {
@@ -81,6 +82,7 @@ a {
   border: 1px solid #37578c;
   background: -webkit-linear-gradient(top, #4065a3, #4871b6);
   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  text-align: center;
 }
 
 .bgabutton_red {

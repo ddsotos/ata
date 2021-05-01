@@ -14,19 +14,20 @@ function createWebSocketServer(io, game) {
       console.log(displayName + "が参加表明");
      
       socket.on('disconnect', () => {
-              game.disconnect(socket.id);
+        if(game.HasGameStarted()){
+          //ゲーム中抜けた場合、得点が初期化されたら悲しいので、同じ名前で接続が来るのを待つ
+          game.disconnect(socket.id);
+        }
+        else{
+          game.Exclude(socket.id);
+          rootIo.emit('UpdatePlayerStateRequest_Prepair', game.JsonPlayerState());
+          InitGameIfPossible(io, game);
+        }
       });
-
 
       socket.on('onPlayerPrepaired', (indexInMarket) => {
         game.onPlayerPrepaired(socket.id);
         rootIo.emit('UpdatePlayerStateRequest_Prepair', game.JsonPlayerState());
-        InitGameIfPossible(io, game);
-      });
-
-      socket.on('exclude-disconnected', (none) => {
-        console.log('exclude-disconnected');
-        game.ExcludeDisconnected();
         InitGameIfPossible(io, game);
       });
 
