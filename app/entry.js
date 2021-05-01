@@ -22,18 +22,6 @@ const UpdatePlayerState = function(jsonPlayerState){
       id : player.playerName
     }))
   });
-
-
-  $("#reset-button").off();
-  $("#reset-button").click(() => {
-    console.log('reset');
-    socket.emit('resetRequest', 0);
-  })
-  $("#giveup-button").off();
-  $("#giveup-button").click(() => {
-    console.log('giveup');
-    socket.emit('giveup', 0);
-  })
 }
 
 const StateChange_SelectingAsADealer = function(){
@@ -91,6 +79,12 @@ const StateChange_PrepairingAGame = function(){
   ClearHand();
   ClearAnswerArea();
   $("#btn_keep_order").show();
+
+  $("#exclude-disconnected-button").click(() => {
+    socket.emit('exclude-disconnected', 0);
+    $("#exclude-disconnected-button").off('click');
+  })
+  $("#exclude-disconnected-button").show();
 }
 
 const StateChange_WaitingForAllPlayersToSelect = function(){
@@ -175,6 +169,7 @@ socket.on('UpdatePlayerStateRequest_Select', (jsonPlayerState) => {
   let playerState = JSON.parse(jsonPlayerState);
   UpdatePlayerState(jsonPlayerState);
   ClearAnswerArea();
+  $("#exclude-disconnected-button").hide();
 
   if(HaveAlreadySelected(playerState, socket.id)){
     StateChange_WaitingForAllPlayersToSelect();

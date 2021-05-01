@@ -217,6 +217,9 @@ function OnGiveUp(socketID){
   FindPlayerByID(socketID).GiveUp();
 }
 
+function ExcludeDisconnected(){
+  gameObj.players = gameObj.players.filter(player => player.disconnected == false);
+}
 
   //init(); // 初期化（初期化はサーバー起動時に行う
 
@@ -243,5 +246,6 @@ function OnGiveUp(socketID){
     ResetGame,
     TryToReplaceDisconnectedPlayer,
     OnGiveUp,
-    NeedReset
+    NeedReset,
+    ExcludeDisconnected
   };

@@ -5942,17 +5942,6 @@ var UpdatePlayerState = function UpdatePlayerState(jsonPlayerState) {
       id: player.playerName
     }));
   });
-
-  (0, _jquery2.default)("#reset-button").off();
-  (0, _jquery2.default)("#reset-button").click(function () {
-    console.log('reset');
-    socket.emit('resetRequest', 0);
-  });
-  (0, _jquery2.default)("#giveup-button").off();
-  (0, _jquery2.default)("#giveup-button").click(function () {
-    console.log('giveup');
-    socket.emit('giveup', 0);
-  });
 };
 
 var StateChange_SelectingAsADealer = function StateChange_SelectingAsADealer() {
@@ -6009,6 +5998,12 @@ var StateChange_PrepairingAGame = function StateChange_PrepairingAGame() {
   ClearHand();
   ClearAnswerArea();
   (0, _jquery2.default)("#btn_keep_order").show();
+
+  (0, _jquery2.default)("#exclude-disconnected-button").click(function () {
+    socket.emit('exclude-disconnected', 0);
+    (0, _jquery2.default)("#exclude-disconnected-button").off('click');
+  });
+  (0, _jquery2.default)("#exclude-disconnected-button").show();
 };
 
 var StateChange_WaitingForAllPlayersToSelect = function StateChange_WaitingForAllPlayersToSelect() {
@@ -6093,6 +6088,7 @@ socket.on('UpdatePlayerStateRequest_Select', function (jsonPlayerState) {
   var playerState = JSON.parse(jsonPlayerState);
   UpdatePlayerState(jsonPlayerState);
   ClearAnswerArea();
+  (0, _jquery2.default)("#exclude-disconnected-button").hide();
 
   if (HaveAlreadySelected(playerState, socket.id)) {
     StateChange_WaitingForAllPlayersToSelect();

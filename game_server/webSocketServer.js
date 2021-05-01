@@ -21,14 +21,13 @@ function createWebSocketServer(io, game) {
       socket.on('onPlayerPrepaired', (indexInMarket) => {
         game.onPlayerPrepaired(socket.id);
         rootIo.emit('UpdatePlayerStateRequest_Prepair', game.JsonPlayerState());
-        if(game.CanInitGame())
-        {
-          flags.alreadyStarted = true;
-          game.InitInternalGame();
-          game.PublishEachGameState(rootIo);
-          rootIo.emit('OnNewDescriptionCard', game.GetCurrentDescription());
-          rootIo.emit('UpdatePlayerStateRequest_Select', game.JsonPlayerState());
-        }
+        InitGameIfPossible(io, game);
+      });
+
+      socket.on('exclude-disconnected', (none) => {
+        console.log('exclude-disconnected');
+        game.ExcludeDisconnected();
+        InitGameIfPossible(io, game);
       });
 
       socket.on('onThingCardSelected', (thingCardName) => {
@@ -91,6 +90,8 @@ function createWebSocketServer(io, game) {
         reset(rootIo, game)
       });
 
+   
+
 
 
       socket.on('giveup', (none) => {
@@ -130,6 +131,17 @@ function createWebSocketServer(io, game) {
     rootIo.emit('UpdatePlayerStateRequest_Prepair', game.JsonPlayerState());
     flags.alreadyStarted = false;
     flags.answerCardSelected = false;
+  }
+
+  function InitGameIfPossible(rootIo, game) {
+    if(game.CanInitGame())
+    {
+      flags.alreadyStarted = true;
+      game.InitInternalGame();
+      game.PublishEachGameState(rootIo);
+      rootIo.emit('OnNewDescriptionCard', game.GetCurrentDescription());
+      rootIo.emit('UpdatePlayerStateRequest_Select', game.JsonPlayerState());
+    }
   }
 
 
