@@ -1,10 +1,9 @@
-#overall-header(style='display:none')
 #page-title.roundedbox
-  #maintitlebar_content(style= 'position: relative;')
-    span#pagemaintitletext
-    a#top_Information.action-button.bgabutton.bgabutton_blue()   
-    span#pagemaintitletext
-    a#btn_keep_order.action-button.bgabutton.bgabutton_blue(href='#' onclick='return false;') 確定  
+  #maintitlebar_content(style='min-height: 70px;')
+    span#pagemaintitletext(style= 'float: left; position:static;')
+      #top_Information.bgabutton.bgabutton_red()   
+    span#pagemaintitletext(style= 'float: right; position:static;')
+      a#btn_keep_order.bgabutton.bgabutton_blue(href='#' onclick='return false;') 確定  
 #page-content.game-content
   #head_infomsg.head_infomsg(style='display: none;')
     .head_error

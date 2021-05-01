@@ -6,7 +6,6 @@ class Deck{
     constructor(cards){
         this.cards = cards.members;
         shuffle(this.cards); 
-        console.log(this.cards[0]);
     }
     Draw(){
         return this.cards.pop();

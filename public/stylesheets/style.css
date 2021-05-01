@@ -18,11 +18,6 @@ a {
   border-radius: 6px;
 }
 
-.playerstate {
-  width: 98px;
-  height: 150px;
-}
-
 .selectable {
   border-style: dotted;
   border-color: blue;
@@ -34,6 +29,7 @@ a {
 .playerState {
   min-width : 30px;
   margin-left: 10px;
+  font-size: 15px;
 }
 
 .card_area {
@@ -54,6 +50,7 @@ a {
   width: 100%;
   height: 100%;
   text-align: center;
+  cursor: pointer;
 }
 
 .marketspace {
@@ -79,12 +76,22 @@ a {
 }
 
 .bgabutton_blue {
+  cursor: pointer;
+  color: white;
   border: 1px solid #37578c;
   background: -webkit-linear-gradient(top, #4065a3, #4871b6);
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
 }
 
+.bgabutton_red {
+  color: white;
+  border: 1px solid #37578c;
+  background: -webkit-linear-gradient(top, #c53939, #eb1823);
+}
+
+
 .bgabutton {
-  min-width: 110px;
+  min-width: 150px;
   padding: 6px 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -92,13 +99,10 @@ a {
   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
   box-shadow: rgba(0,0,0,1) 0 1px 0;
-  text-shadow: rgba(0,0,0,.4) 0 1px 0;
-  color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
   vertical-align: middle;
-  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

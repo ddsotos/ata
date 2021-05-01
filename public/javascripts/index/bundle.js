@@ -5937,13 +5937,12 @@ var UpdatePlayerState = function UpdatePlayerState(jsonPlayerState) {
   var playerState = JSON.parse(jsonPlayerState);
   (0, _jquery2.default)("#player_state_list").empty();
   playerState.forEach(function (player) {
-    var text = "<div>" + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
+    var text = '<div class="playerState">' + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
     (0, _jquery2.default)("#player_state_list").append((0, _jquery2.default)(text, {
-      "min-width": 30,
-      "class": "playerstate",
       id: player.playerName
     }));
   });
+
   (0, _jquery2.default)("#reset-button").off();
   (0, _jquery2.default)("#reset-button").click(function () {
     console.log('reset');
@@ -6029,6 +6028,13 @@ var UpdateHand = function UpdateHand(privateState) {
   }
   for (var i = 0; i < privateState.length; i++) {
     (0, _jquery2.default)('label[for=my_thing_card' + i + ']').text(privateState[i].name);
+    if (privateState[i].name.length > 6) {
+      (0, _jquery2.default)('label[for=my_thing_card' + i + ']').css('font-size', '15px');
+    } else if (privateState[i].name.length > 3) {
+      (0, _jquery2.default)('label[for=my_thing_card' + i + ']').css('font-size', '20px');
+    } else {
+      (0, _jquery2.default)('label[for=my_thing_card' + i + ']').css('font-size', '40px');
+    }
   }
 };
 
@@ -6036,6 +6042,14 @@ var ClearHand = function ClearHand() {
   for (var i = 0; i < 5; i++) {
     (0, _jquery2.default)('label[for=my_thing_card' + i + ']').text("");
   }
+};
+
+var HighlightSelectedCard = function HighlightSelectedCard(thingCard) {
+  (0, _jquery2.default)(".answer_cards").each(function (index, element) {
+    if ((0, _jquery2.default)(element).text() == thingCard) {
+      (0, _jquery2.default)(element).addClass("selectable");
+    };
+  });
 };
 
 var HaveAlreadySelected = function HaveAlreadySelected(playerState, socketID) {
@@ -6055,11 +6069,9 @@ var ClearAnswerArea = function ClearAnswerArea() {
     (0, _jquery2.default)(element).hide();
   });
   (0, _jquery2.default)('[name="answer_cards"]:checked').prop("checked", false);
-};
-
-var gameObj = {
-  myDisplayName: (0, _jquery2.default)('#main').attr('data-displayName'),
-  myThumbUrl: (0, _jquery2.default)('#main').attr('data-thumbUrl')
+  (0, _jquery2.default)(".answer_cards").each(function (index, element) {
+    (0, _jquery2.default)(element).removeClass("selectable");
+  });
 };
 
 var userName = void 0;
@@ -6114,6 +6126,14 @@ socket.on('DealerDrawACardResult', function (openCards) {
   console.log(openCards);
   for (var i = 0; i < openCards.length; i++) {
     (0, _jquery2.default)('label[for=answer_card' + i + ']').text(openCards[i].card);
+    if (openCards[i].card.length > 6) {
+      (0, _jquery2.default)('label[for=answer_card' + i + ']').css('font-size', '15px');
+    } else if (openCards[i].card.length > 3) {
+      (0, _jquery2.default)('label[for=answer_card' + i + ']').css('font-size', '20px');
+    } else {
+      (0, _jquery2.default)('label[for=answer_card' + i + ']').css('font-size', '40px');
+    }
+
     if ((0, _jquery2.default)('label[for=answer_card' + i + ']').is(':hidden')) {
       (0, _jquery2.default)('label[for=answer_card' + i + ']').fadeIn();
     }
@@ -6137,6 +6157,7 @@ socket.on('onAllAnswersDrawn', function (none) {
 
 socket.on('onAnswerCardSelected', function (thingCardName) {
   console.log('onAnswerCardSelected');
+  HighlightSelectedCard(thingCardName);
   StateChange_AnswerCardSelected(thingCardName);
 });
 
@@ -6166,7 +6187,7 @@ socket.on('UpdatePlayerStateRequest_RoundResult', function (jsonPlayerState) {
   }
   var myPlayerState = MyPlayerState(playerState, socket.id);
   if (myPlayerState == "親") {
-    (0, _jquery2.default)("#btn_keep_order").text("親だったあなたがこのボタンを押すと、次の親に移ります");
+    (0, _jquery2.default)("#btn_keep_order").text("次のラウンドに移ります");
     (0, _jquery2.default)("#btn_keep_order").off('click');
     (0, _jquery2.default)("#btn_keep_order").click(function () {
       socket.emit('onRoundEnd', 0);

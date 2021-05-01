@@ -52,7 +52,6 @@ const StateChange_SelectingAsADealer = function(){
 const StateChange_AnswerCardSelected = function(thingCard){
   if(myState == gameState.Scoring)return;
   myState = gameState.Scoring;
-  HighlightSelectedCard(thingCard);
   $("#top_Information").text("選ばれたのは" + thingCard +"でした。出したのは…");
   $("#btn_keep_order").hide();
   $("#btn_keep_order").off('click');
@@ -111,7 +110,14 @@ const UpdateHand = function(privateState){
     console.log("手札が5枚ないのはおかしい");
   }
   for(let i = 0; i < privateState.length; i++){
-    $('label[for=my_thing_card' + i + ']').text(privateState[i].name);      
+    $('label[for=my_thing_card' + i + ']').text(privateState[i].name);
+    if(privateState[i].name.length > 6){
+      $('label[for=my_thing_card' + i + ']').css('font-size', '15px');
+    } else if(privateState[i].name.length > 3){
+      $('label[for=my_thing_card' + i + ']').css('font-size', '20px');
+    }else {
+      $('label[for=my_thing_card' + i + ']').css('font-size', '40px');
+    }     
   }
 };
 
@@ -123,13 +129,10 @@ const ClearHand = function(){
 
 const HighlightSelectedCard = function(thingCard){
   $(".answer_cards").each(function(index, element){
-    console.log($(element).text())
     if($(element).text() == thingCard){
-      console.log("同じ奴あるけど")
       $(element).addClass("selectable");
     };});
 }
-
 
 const HaveAlreadySelected = function(playerState, socketID){
   let myPlayerState = MyPlayerState(playerState, socketID);
@@ -146,6 +149,9 @@ const ClearAnswerArea = function(){
   $(".answer_cards").each(function(index, element){
     $(element).hide();});
   $('[name="answer_cards"]:checked').prop("checked",false);
+  $(".answer_cards").each(function(index, element){
+    $(element).removeClass("selectable");
+  });
 }
 
 let userName;
@@ -210,6 +216,14 @@ socket.on('DealerDrawACardResult', (openCards) => {
   for(let i = 0; i < openCards.length; i++)
   {
     $('label[for=answer_card' + i +']').text(openCards[i].card);
+    if(openCards[i].card.length > 6){
+      $('label[for=answer_card' + i + ']').css('font-size', '15px');
+    } else if(openCards[i].card.length > 3){
+      $('label[for=answer_card' + i + ']').css('font-size', '20px');
+    } else {
+      $('label[for=answer_card' + i + ']').css('font-size', '40px');
+    }     
+
     if($('label[for=answer_card' + i +']').is(':hidden'))
     {
       $('label[for=answer_card' + i +']').fadeIn();
@@ -234,6 +248,7 @@ socket.on('onAllAnswersDrawn', (none) => {
 
 socket.on('onAnswerCardSelected', (thingCardName) => {
   console.log('onAnswerCardSelected');
+  HighlightSelectedCard(thingCardName);
   StateChange_AnswerCardSelected(thingCardName);
 });
 
@@ -262,7 +277,7 @@ socket.on('UpdatePlayerStateRequest_RoundResult', (jsonPlayerState) => {
   }
   let myPlayerState = MyPlayerState(playerState, socket.id);
   if(myPlayerState == "親"){
-    $("#btn_keep_order").text("親だったあなたがこのボタンを押すと、次の親に移ります");
+    $("#btn_keep_order").text("次のラウンドに移ります");
     $("#btn_keep_order").off('click');
     $("#btn_keep_order").click(() => {
       socket.emit('onRoundEnd', 0);
