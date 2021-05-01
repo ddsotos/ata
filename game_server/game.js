@@ -101,6 +101,7 @@ function InitInternalGame() {
 
 function ResetGame() {
   gameObj.internalGame.reset();
+  gameObj.players = gameObj.players.filter(player=> player.disconnected == false);
   gameObj.players.forEach(player =>{
     player.state = "準備未完了";
     player.score = 0;
@@ -126,7 +127,7 @@ function PublishEachGameState(rootIo){
 
 function GetHandData(socketID){
   var player = FindPlayerByID(socketID);
-  return JSON.stringify(gameObj.internalGame.internalGamePlayers[player.playerID].hand);
+  return JSON.stringify(gameObj.internalGame.internalGamePlayers.find(intplayer => intplayer.playerID == player.playerID).hand);
 }
 
 function DealerSocketID(){
@@ -220,7 +221,7 @@ function TryToReplaceDisconnectedPlayer(socketID, displayName){
 }
 
 function OnGiveUp(socketID){
-  FindPlayerByID(socketID).GiveUp();
+  if(FindPlayerByID(socketID))FindPlayerByID(socketID).GiveUp();
 }
 
 function HasGameStarted(){
@@ -229,7 +230,6 @@ function HasGameStarted(){
 
 
 
-  //init(); // 初期化（初期化はサーバー起動時に行う
 
   module.exports = {
     OnNewConnection,
@@ -255,5 +255,6 @@ function HasGameStarted(){
     OnGiveUp,
     NeedReset,
     Exclude,
-    HasGameStarted
+    HasGameStarted,
+    FindPlayerByID
   };

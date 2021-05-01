@@ -1,5 +1,5 @@
 body {
-  padding: 20px;
+  padding: 10px;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -47,11 +47,12 @@ a {
 
 .card_normalsize {
   padding: 3px 3px;
-  display:block;
-  width: 100%;
-  height: 100%;
+  width: 130px;
+  height: 88px;
   text-align: center;
   cursor: pointer;
+  display: table-cell; /* IE8から使用可能 */
+  vertical-align: middle;
 }
 
 .marketspace {

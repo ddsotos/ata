@@ -17,7 +17,10 @@ const UpdatePlayerState = function(jsonPlayerState){
   let playerState = JSON.parse(jsonPlayerState);
   $("#player_state_list").empty();
   playerState.forEach(player => {
-    let text = '<div class="playerState">' + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
+    let text = '<div class="playerState">' + player.playerName + "<br>" + player.state + "<br>得点:" + player.score + "</div>";
+    if(player.state == "勝者"){
+        text = '<div class="playerState"><b>' + player.playerName + "<br>" + player.state + "<br>得点:" + player.score + "</b></div>";
+    }
     $("#player_state_list").append($(text, {
       id : player.playerName
     }))
@@ -80,11 +83,16 @@ const StateChange_PrepairingAGame = function(){
   ClearAnswerArea();
   $("#btn_keep_order").show();
 
-  $("#exclude-disconnected-button").click(() => {
-    socket.emit('exclude-disconnected', 0);
-    $("#exclude-disconnected-button").off('click');
+  $("#reset-button").click(() => {
+    socket.emit('resetRequest', 0);
+    $("#reset-button").off();
   })
-  $("#exclude-disconnected-button").show();
+  $("#reset-button").show();
+  $("#giveup-button").click(() => {
+    socket.emit('giveup', 0);
+    $("#giveup-button").off();
+  })
+  $("#giveup-button").show();
 }
 
 const StateChange_WaitingForAllPlayersToSelect = function(){
@@ -149,8 +157,8 @@ const ClearAnswerArea = function(){
 }
 
 let userName;
-while(!userName || userName.length > 20){
-  userName = prompt("ユーザー名を入力してください", "");
+while(!userName || userName.length > 10){
+  userName = prompt("ユーザー名を入力してください(短めだと助かる、10字以下)", "");
 }
 const socketQueryParameters = `displayName=${userName}`;
 const socket = io($('#main').attr('data-ipAddress') + '?' + socketQueryParameters);
@@ -169,7 +177,6 @@ socket.on('UpdatePlayerStateRequest_Select', (jsonPlayerState) => {
   let playerState = JSON.parse(jsonPlayerState);
   UpdatePlayerState(jsonPlayerState);
   ClearAnswerArea();
-  $("#exclude-disconnected-button").hide();
 
   if(HaveAlreadySelected(playerState, socket.id)){
     StateChange_WaitingForAllPlayersToSelect();

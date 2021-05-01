@@ -1,3 +1,5 @@
+const { FindPlayerByID } = require("./game");
+
 playerCount = 0;
 var flags ={
   waitForRaisingAHand: false,
@@ -32,7 +34,8 @@ function createWebSocketServer(io, game) {
       });
 
       socket.on('onThingCardSelected', (thingCardName) => {
-        //socketidの人が実際のプレイヤーであるかチェックすべき
+        if(!FindPlayerByID(socket.id))return;
+
         game.OnThingCardSelected(socket.id, thingCardName);      
         rootIo.emit('UpdatePlayerStateRequest_Select', game.JsonPlayerState());
         socket.emit('privateGameState', game.GetHandData(socket.id));

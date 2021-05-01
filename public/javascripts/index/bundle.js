@@ -5937,7 +5937,10 @@ var UpdatePlayerState = function UpdatePlayerState(jsonPlayerState) {
   var playerState = JSON.parse(jsonPlayerState);
   (0, _jquery2.default)("#player_state_list").empty();
   playerState.forEach(function (player) {
-    var text = '<div class="playerState">' + player.playerName + "<br>状態:" + player.state + "<br>得点:" + player.score + "</div>";
+    var text = '<div class="playerState">' + player.playerName + "<br>" + player.state + "<br>得点:" + player.score + "</div>";
+    if (player.state == "勝者") {
+      text = '<div class="playerState"><b>' + player.playerName + "<br>" + player.state + "<br>得点:" + player.score + "</b></div>";
+    }
     (0, _jquery2.default)("#player_state_list").append((0, _jquery2.default)(text, {
       id: player.playerName
     }));
@@ -5999,11 +6002,16 @@ var StateChange_PrepairingAGame = function StateChange_PrepairingAGame() {
   ClearAnswerArea();
   (0, _jquery2.default)("#btn_keep_order").show();
 
-  (0, _jquery2.default)("#exclude-disconnected-button").click(function () {
-    socket.emit('exclude-disconnected', 0);
-    (0, _jquery2.default)("#exclude-disconnected-button").off('click');
+  (0, _jquery2.default)("#reset-button").click(function () {
+    socket.emit('resetRequest', 0);
+    (0, _jquery2.default)("#reset-button").off();
   });
-  (0, _jquery2.default)("#exclude-disconnected-button").show();
+  (0, _jquery2.default)("#reset-button").show();
+  (0, _jquery2.default)("#giveup-button").click(function () {
+    socket.emit('giveup', 0);
+    (0, _jquery2.default)("#giveup-button").off();
+  });
+  (0, _jquery2.default)("#giveup-button").show();
 };
 
 var StateChange_WaitingForAllPlayersToSelect = function StateChange_WaitingForAllPlayersToSelect() {
@@ -6070,8 +6078,8 @@ var ClearAnswerArea = function ClearAnswerArea() {
 };
 
 var userName = void 0;
-while (!userName || userName.length > 20) {
-  userName = prompt("ユーザー名を入力してください", "");
+while (!userName || userName.length > 10) {
+  userName = prompt("ユーザー名を入力してください(短めだと助かる、10字以下)", "");
 }
 var socketQueryParameters = 'displayName=' + userName;
 var socket = (0, _socket2.default)((0, _jquery2.default)('#main').attr('data-ipAddress') + '?' + socketQueryParameters);
@@ -6088,7 +6096,6 @@ socket.on('UpdatePlayerStateRequest_Select', function (jsonPlayerState) {
   var playerState = JSON.parse(jsonPlayerState);
   UpdatePlayerState(jsonPlayerState);
   ClearAnswerArea();
-  (0, _jquery2.default)("#exclude-disconnected-button").hide();
 
   if (HaveAlreadySelected(playerState, socket.id)) {
     StateChange_WaitingForAllPlayersToSelect();
