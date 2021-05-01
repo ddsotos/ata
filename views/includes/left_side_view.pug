@@ -31,9 +31,9 @@
 #utilities.roundedbox
   #utilities_content(style= 'display: inline-block; position: relative;')
     span#pagemaintitletext
-    a#reset-button.action-button.bgabutton.bgabutton_blue(href='#' onclick='socket.emit('resetRequest', 0);') ゲームをリセット  
+    a#reset-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="socket.emit('resetRequest', 0);") ゲームをリセット  
     span#pagemaintitletext
-    a#giveup-button.action-button.bgabutton.bgabutton_blue(href='#' onclick='socket.emit('giveup', 0);') このラウンドで抜ける  
+    a#giveup-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="socket.emit('giveup', 0);") このラウンドで抜ける  
     span#pagemaintitletext
     a#exclude-disconnected-button.action-button.bgabutton.bgabutton_blue(href='#' onclick='return false;') 
 
