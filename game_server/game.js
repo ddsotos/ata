@@ -179,7 +179,7 @@ function HasDealerDrawnAllAnswers(){
 }
 
 function NeedReset(){
-  return gameObj.players.length < 2;
+  return gameObj.players.filter(player=> !player.disconnected).length < 2;
 }
 
 function StartANewRound(){

@@ -19,6 +19,9 @@ function createWebSocketServer(io, game) {
         if(game.HasGameStarted()){
           //ゲーム中抜けた場合、得点が初期化されたら悲しいので、同じ名前で接続が来るのを待つ
           game.disconnect(socket.id);
+          if(game.NeedReset()){
+            reset(rootIo, game);
+          }
         }
         else{
           game.Exclude(socket.id);
