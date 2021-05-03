@@ -12,8 +12,8 @@
     #player_state_list(style='position: relative; min-height: 50px; display: flex;margin: 1px')
     #game_play_area_wrap
       #game_play_area(style='min-width: 0px;')
-          #description_card_area.whiteblock.section_title お題  
-            #description_card.card(style='padding: 6px; width: 500px; height: 100px; border-color: black; margin-left:auto; margin-right:auto; font-weight:normal; display: table-cell; vertical-align: middle;')
+          #description_card_area.whiteblock.section_title(style='width: 520px; margin-left:auto; margin-right:auto;') お題  
+            #description_card.card(style='padding: 6px; width: 500px; height: 100px; border-color: black; font-weight:normal; display: table-cell; vertical-align: middle;')
           #answer_area.whiteblock.market_area.section_title(style='min-height: 150px;') お題への回答  
             #answers_in_upperrow(style='margin-top: 4px; display: flex; flex-wrap: wrap;')
               - for(let i = 0; i < 10; i++)
