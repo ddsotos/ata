@@ -77,8 +77,8 @@ function InternalGame(){
         })
     };
     this.OnThingCardSelected = function(playerID, thingCardName){
-        let player = this.internalGamePlayers[playerID];
-        player.Play(thingCardName);
+        let player = this.internalGamePlayers.find(player=> player.playerID == playerID);
+        if(player)player.Play(thingCardName);
     }
     this.PrepairForSelectionPhase = function(dealerPlayerID){
         this.selections.length = 0;
