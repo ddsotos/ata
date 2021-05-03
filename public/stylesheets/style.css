@@ -109,7 +109,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 10px 10px 20px 20px;
+  margin: 5px 5px 5px 5px;
   display: inline-block;
   border-radius: 6px;
 }
