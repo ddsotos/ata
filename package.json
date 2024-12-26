@@ -7,20 +7,23 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
+    "core-js": "^3.39.0",
     "debug": "~2.6.9",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
     "http-errors": "~1.6.2",
     "jquery": "^3.7.1",
     "morgan": "~1.9.0",
-    "pug": "^2.0.4",
-    "socket.io": "^2.5.1",
-    "socket.io-client": "2.2.0"
+    "pug": "^3.0.3",
+    "socket.io": "^4.3.1",
+    "socket.io-client": "^2.5.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "babel-loader": "^9.2.1",
     "babel-preset-env": "^0.0.0",
-    "webpack": "^5.97.1"
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
