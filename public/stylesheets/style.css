@@ -59,8 +59,9 @@ a {
   inset: 0;
   text-align: center;
   cursor: pointer;
-  display: table-cell; /* IE8から使用可能 */
-  vertical-align: middle;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;  
 }
 
 .marketspace {
@@ -104,7 +105,7 @@ a {
 .bgabutton {
   min-width: 10vw;
   height: 100%;
-  padding: 6px 12px;
+  padding: 0px 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -113,12 +114,13 @@ a {
   box-shadow: rgba(0,0,0,1) 0 1px 0;
   font-weight: bold;
   text-decoration: none;
-  vertical-align: middle;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;  
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 5px 5px 5px 5px;
-  display: inline-block;
+  margin: 0px 0px 0px 0px;
   border-radius: 6px;
 }
 /*以降は個別のスタイル*/
@@ -152,7 +154,7 @@ a {
 #page-title {
   background-color: #f0f0f0;
   text-align: center;
-  font-size: min(6vh, 2vw);
+  font-size: min(6vh, 2.5vw);
   font-weight: bold;
   line-height: 100%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, .3);

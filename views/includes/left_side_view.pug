@@ -1,7 +1,7 @@
 #page-title.roundedbox
-  span#pagemaintitletext(style= 'float: left; position:static;')
+  span#pagemaintitletext(style= 'float: left; position:static; height: 100%;')
     #top_Information.bgabutton.bgabutton_red()   
-  span#pagemaintitletext(style= 'float: right; position:static;')
+  span#pagemaintitletext(style= 'float: right; position:static; height: 100%;')
     a#btn_keep_order.bgabutton.bgabutton_blue(href='#' onclick='return false;') 確定  
 #page-content.game-content
   #head_infomsg.head_infomsg(style='display: none;')
@@ -21,11 +21,8 @@
         input.radiobutton(id ='my_thing_card' + i type="radio" name="hand_cards")
         label.card_normalsize.card(for='my_thing_card' + i)
 #utilities.roundedbox
-  #utilities_content(style= 'display: inline-block; position: relative;')
-    span#pagemaintitletext
-    a#reset-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="return false;" style='display: none;') ゲームをリセット  
-    span#pagemaintitletext
-    a#giveup-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="return false;" style='display: none;') このラウンドで抜ける  
+  a#reset-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="return false;" style='display: none float: left; max-width: 30vw') ゲームをリセット  
+  a#giveup-button.action-button.bgabutton.bgabutton_blue(href='#' onclick="return false;" style='display: none; float: right;') このラウンドで抜ける  
 
 
                                   

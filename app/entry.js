@@ -115,7 +115,7 @@ const UpdateHand = function(privateState){
   for(let i = 0; i < privateState.length; i++){
     $('label[for=my_thing_card' + i + ']').text(privateState[i].name);
     if(privateState[i].name.length > 6){
-      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(3vh,5vw)');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(3vh,4vw)');
     } else if(privateState[i].name.length > 3){
       $('label[for=my_thing_card' + i + ']').css('font-size', 'min(8vh,5vw)');
     }else {
@@ -219,9 +219,9 @@ socket.on('DealerDrawACardResult', (openCards) => {
   for(let i = 0; i < openCards.length; i++)
   {
     $('label[for=answer_card' + i +']').text(openCards[i].card);
-    if(openCards[i].name.length > 6){
-      $('label[for=answer_card' + i + ']').css('font-size', 'min(3vh,5vw)');
-    } else if(openCards[i].name.length > 3){
+    if(openCards[i].card.length > 6){
+      $('label[for=answer_card' + i + ']').css('font-size', 'min(3vh,4vw)');
+    } else if(openCards[i].card.length > 3){
       $('label[for=answer_card' + i + ']').css('font-size', 'min(8vh,5vw)');
     }else {
       $('label[for=answer_card' + i + ']').css('font-size', 'min(8vh,10vw)');
