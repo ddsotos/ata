@@ -89,11 +89,6 @@ const StateChange_PrepairingAGame = function(){
     $("#reset-button").off();
   })
   $("#reset-button").show();
-  $("#giveup-button").click(() => {
-    socket.emit('giveup', 0);
-    $("#giveup-button").off();
-  })
-  $("#giveup-button").show();
 }
 
 const StateChange_WaitingForAllPlayersToSelect = function(){
