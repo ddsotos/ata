@@ -114,11 +114,11 @@ const UpdateHand = function(privateState){
   for(let i = 0; i < privateState.length; i++){
     $('label[for=my_thing_card' + i + ']').text(privateState[i].name);
     if(privateState[i].name.length > 6){
-      $('label[for=my_thing_card' + i + ']').css('font-size', '15px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(4vh,27vw)');
     } else if(privateState[i].name.length > 3){
-      $('label[for=my_thing_card' + i + ']').css('font-size', '20px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(9vh,30vw)');
     }else {
-      $('label[for=my_thing_card' + i + ']').css('font-size', '40px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(9vh,60vw)');
     }     
   }
 };

@@ -18,6 +18,19 @@ a {
   border-radius: 6px;
 }
 
+.cards_area {
+  height: 40vh;
+  display:  grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 1vh, 1vw;
+}
+
+.main_view {
+  display:  grid;
+  grid-template-rows: 10vh 1fr 10vh;
+}
+
 .selectable {
   border-style: dotted;
   border-color: blue;
@@ -34,21 +47,14 @@ a {
 }
 
 .card_area {
-  padding: 0px 0px 0px 0px;
-  width: 140px;
-  height: 98px;
-  float: left;
-}
-
-.small_padding {
-  padding: 5px 5px;
-  height: 88px;
+  padding: 1px 1px 1px 1px;
+  position: relative;
 }
 
 .card_normalsize {
   padding: 3px 3px;
-  width: 130px;
-  height: 88px;
+  position: absolute;
+  inset: 0;
   text-align: center;
   cursor: pointer;
   display: table-cell; /* IE8から使用可能 */
@@ -144,9 +150,9 @@ a {
 #page-title {
   background-color: #f0f0f0;
   text-align: center;
-  font-size: 110%;
+  font-size: 7vh;
   font-weight: bold;
-  line-height: 32px;
+  line-height: 100%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
 }
 
