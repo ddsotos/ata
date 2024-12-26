@@ -1,6 +1,5 @@
 'use strict';
 const crypto = require('crypto');
-const socket = require('socket.io-client/lib/socket');
 const gameObj = {
   internalGame: require('../game_server/InternalGame'),
   players: new Array(),

@@ -60,6 +60,7 @@ const StateChange_SelectingACard = function(){
     console.log('onThingCardSelected');
     const selectedID = $('[name="hand_cards"]:checked').attr('id');
     if(!selectedID)return;
+    $('[name="hand_cards"]:checked').prop("checked",false);
     socket.emit('onThingCardSelected', $('label[for=' + selectedID +']').text());
     $("#btn_keep_order").fadeOut();
   })
@@ -114,11 +115,11 @@ const UpdateHand = function(privateState){
   for(let i = 0; i < privateState.length; i++){
     $('label[for=my_thing_card' + i + ']').text(privateState[i].name);
     if(privateState[i].name.length > 6){
-      $('label[for=my_thing_card' + i + ']').css('font-size', '15px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(3vh,5vw)');
     } else if(privateState[i].name.length > 3){
-      $('label[for=my_thing_card' + i + ']').css('font-size', '20px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(8vh,5vw)');
     }else {
-      $('label[for=my_thing_card' + i + ']').css('font-size', '40px');
+      $('label[for=my_thing_card' + i + ']').css('font-size', 'min(8vh,10vw)');
     }     
   }
 };
@@ -218,12 +219,12 @@ socket.on('DealerDrawACardResult', (openCards) => {
   for(let i = 0; i < openCards.length; i++)
   {
     $('label[for=answer_card' + i +']').text(openCards[i].card);
-    if(openCards[i].card.length > 6){
-      $('label[for=answer_card' + i + ']').css('font-size', '15px');
-    } else if(openCards[i].card.length > 3){
-      $('label[for=answer_card' + i + ']').css('font-size', '20px');
-    } else {
-      $('label[for=answer_card' + i + ']').css('font-size', '40px');
+    if(openCards[i].name.length > 6){
+      $('label[for=answer_card' + i + ']').css('font-size', 'min(3vh,5vw)');
+    } else if(openCards[i].name.length > 3){
+      $('label[for=answer_card' + i + ']').css('font-size', 'min(8vh,5vw)');
+    }else {
+      $('label[for=answer_card' + i + ']').css('font-size', 'min(8vh,10vw)');
     }     
 
     if($('label[for=answer_card' + i +']').is(':hidden'))
