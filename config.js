@@ -1,4 +1,4 @@
 module.exports = {
-    ipAddress: 'https://ata-online.onrender.com/'
+    ipAddress: 'https://ata-new.onrender.com/'
     //ipAddress: 'http://localhost:8000'
   };
